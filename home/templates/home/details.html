@@ -1,0 +1,37 @@
+{% extends "learning/layout.html" %}
+{% load static %}
+{%block title %}Home{% endblock title %}
+{% block content %}
+<nav>
+  <input type="checkbox" id="check">
+  <label class="logo">Student Guide</label>
+  <label for="check" class="checkbtn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <ul>
+    <li><a class="active" href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Clubs</a></li>
+    <li><a href="#">Feedback</a></li>
+  </ul>
+</nav>
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<li>
+    <div class="alert alert-success ">{{ message }}</div>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+<div class="register">
+  <img src="{% static 'image/3.png' %}">
+  <div class="text-block">
+    <h4>Hello, This is your basic guide</h4>
+    <p>To thrieve your experience for the rest of your semester this guide will help you.I assume u must be excited to join different clubs.so, don't worry we are here to help you.</p>
+  <a href="{% url 'register' %}"><h1>Register Yourself</h1></a>
+  </div>
+</div>
+{% endblock content %}
+
