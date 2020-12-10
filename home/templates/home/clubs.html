@@ -1,0 +1,47 @@
+{% extends "learning/layout.html" %}
+{% load static %}
+{%block title %}Home{% endblock title %}
+{% block content %}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">CLUBS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home_detail' %}"> Back to Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Hello, Entusiasters!</h1>
+      <br/>
+      <h4>This is the Club section, Want to know for which club you fit in?</h4>
+      <h4>See the clubs below you can join.</h4>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+  {% for club in club %}
+    <div class="col-md-6">
+      <div class="form-border-club">
+        <h2>{{ club.title }}</h2>
+        <p>{{ club.description }}</p>
+        <p><a class="btn btn-info" href="{{ club.link }}" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+  {% endfor %}
+    </div>
+    <br/><br/><br/><br/>
+  </div> <!-- /container -->
+
+{% endblock content %}

@@ -2,20 +2,31 @@
 {% load static %}
 {%block title %}Home{% endblock title %}
 {% block content %}
-<nav>
-  <input type="checkbox" id="check">
-  <label class="logo">Student Guide</label>
-  <label for="check" class="checkbtn">
-    <i class="fas fa-bars"></i>
-  </label>
-  <ul>
-    <li><a class="active" href="#">Home</a></li>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Events</a></li>
-    <li><a href="#">Clubs</a></li>
-    <li><a href="#">Feedback</a></li>
-  </ul>
-</nav>
+<section id="nav-bar">
+  <nav class="navbar  navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand"></a>
+      <h3>Student Guide</h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home_detail' %}">HOME<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'clubs' %}">CLUBS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'events' %}">EVENTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">PLACEMENT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>
 {% if messages %}
 <ul class="messages">
 {% for message in messages %}
@@ -25,13 +36,22 @@
 {% endfor %}
 </ul>
 {% endif %}
-<div class="register">
-  <img src="{% static 'image/3.png' %}">
-  <div class="text-block">
-    <h4>Hello, This is your basic guide</h4>
-    <p>To thrieve your experience for the rest of your semester this guide will help you.I assume u must be excited to join different clubs.so, don't worry we are here to help you.</p>
-  <a href="{% url 'register' %}"><h1>Register Yourself</h1></a>
+<section id="banner">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-6">
+  <p class="heading-title">Hello, Welcome to the Student Guide.</p>
+  <p>Don't worry to give you the best thrieve about your course we are here to guide you.So,Register fast.</p>
+  <a href="{% url 'register' %}" class="btn btn-outline-warning"> REGISTER YOURSELF </a>
+  
   </div>
-</div>
+  <div class="col-md-6 text-center">
+    <img src="{% static 'image/mca.png' %}" class="img-fluid">
+  </div>
+  </div>
+  </div>
+
+
+</section>
 {% endblock content %}
 

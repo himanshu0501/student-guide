@@ -1,0 +1,38 @@
+{% extends "learning/layout.html" %}
+{% load static %}
+{%block title %}Home{% endblock title %}
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Events</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home_detail' %}"> Back to Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+    <div class="col-md-6">
+        <br/>
+
+      <div class="form-border-club">
+        <h2>VERSION</h2>
+        <p>Version is an annual all India MCA meet conducted by the students of MCA at NIT, Trichy. Since it's conception in 1991, Version has aimed to bring the best students from MCA all over India to NIT, compete against each other and showcase their talent and potential. Version includes a variety of events which aims to challenge students to think out of the box and be creative.
+ 
+
+            Version is the star event for MCA at NIT, Trichy and has become one of the most anticipated events for MCA students all over India.
+            
+            </p>
+        <p><a class="btn btn-info" href="http://version19.in/" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+{% endblock content %}
