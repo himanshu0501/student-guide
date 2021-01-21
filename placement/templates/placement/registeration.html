@@ -1,0 +1,26 @@
+{% extends "placement/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="form-border">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Register Today</legend>                   
+                    {{user_detailform|crispy}} <!--- its an another form for details of the user but will be represented at the same place-->
+                    {{ form|crispy }} <!-- these parallel bars are used to filter we can use here crispy tag to filter our form and look good-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                ALready Have An Account? <a class="ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+</br>
+</br>
+</br>
+
+{% endblock content %}

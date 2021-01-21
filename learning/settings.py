@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
+    'placement',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'home',
-    'register',
     'clubs',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,3 +127,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # its telling to use the bootstrap 
+
+LOGIN_REDIRECT_URL='home'  # /account/profile this is the bydefault link that django search for as the user login so that django can try it to navigate him to the profile page 
+# so here LOGIN_REDIRECT_URL  is trying to divert that navigation to the home page of our blog hence set this URL to home 
+
+LOGIN_URL = 'login'  # as the user try to access the profile page so there we have given a decorator which says that after only login you can see the profile page so django check the profile at
+# /account/login so to change that url instead of profile we have divert that url to login page first and as the user will then directly instead of going to the home page it will go to the profile page whose navigation we have given in our view in placement app.

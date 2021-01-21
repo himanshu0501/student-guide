@@ -1,0 +1,12 @@
+{% extends "placement/base.html" %}
+
+<!-- django provide us the basic logout link this is just to make changes in that link cause we don't want user to directly go to the admin page -->
+
+{% block content %}
+        <h2>You have been logged out!</h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login' %}">Log In Again</a>
+            </small>
+        </div>
+{% endblock content %}

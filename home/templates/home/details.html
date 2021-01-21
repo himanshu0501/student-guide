@@ -9,10 +9,9 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home_detail' %}">HOME<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'home_detail' %}">HOME</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'clubs' %}">CLUBS</a>
@@ -21,37 +20,44 @@
           <a class="nav-link" href="{% url 'events' %}">EVENTS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">PLACEMENT</a>
+          <a class="nav-link" href="{% url 'home' %}">PLACEMENT</a>
         </li>
       </ul>
-    </div>
   </nav>
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">   <!--any message that will display on our template will be represented here-->
+        {% if messages %} 
+          {%for message in messages %}    
+          <div class="alert alert-{{message.tags }}">
+            {{message}}
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </main>
 </section>
-{% if messages %}
-<ul class="messages">
-{% for message in messages %}
-<li>
-    <div class="alert alert-success ">{{ message }}</div>
-</li>
-{% endfor %}
-</ul>
-{% endif %}
 <section id="banner">
   <div class="container">
-  <div class="row">
-  <div class="col-md-6">
-  <p class="heading-title">Hello, Welcome to the Student Guide.</p>
-  <p>Don't worry to give you the best thrieve about your course we are here to guide you.So,Register fast.</p>
-  <a href="{% url 'register' %}" class="btn btn-outline-warning"> REGISTER YOURSELF </a>
-  
+    <div class="row">
+      <div class="col-md-6">
+        <p class="heading-title">Hello, Welcome to the Student Guide.</p>
+        <p>Don't worry to give you the best thrieve about your course we are here to guide you.So,Register fast.</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn btn-outline-warning"> REGISTER YOURSELF </a>
+        {% else %}
+        <a href="{% url 'register' %}" class="btn btn-outline-warning"> REGISTER YOURSELF </a>
+        {% endif %}
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'image/mca.png' %}" class="img-fluid">
+      </div>
+    </div>
   </div>
-  <div class="col-md-6 text-center">
-    <img src="{% static 'image/mca.png' %}" class="img-fluid">
-  </div>
-  </div>
-  </div>
-
-
 </section>
+
+
+<br/><br/>
 {% endblock content %}
 

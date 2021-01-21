@@ -1,0 +1,25 @@
+{% extends "placement/base.html" %}
+{% load crispy_forms_tags %}
+
+<!-- django provide us inbuilt view for the login of user and handle all things by itself -->
+<!-- we are here providing a template for the that view it is basically a copy of the register template  -->
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>                   
+                    {{ form|crispy }} <!-- these parallel bars are used to filter we can use here crispy tag to filter our form and look good-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Log In</button> <!-- after login we will be redirected to account profile that is the by default path that django give us so in settings i have changed that path to be home page using the syntax as LOGIN REDIRECT URL-->
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,6 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import render
 
 def detail(request):
     return render(request,'home/details.html')
