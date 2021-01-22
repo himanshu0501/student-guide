@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import path , include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from django.conf import settings
+from django.conf.urls.static import static  # these two import are needed when we are serving file
+# we can serve uploaded media files from MEDIA_ROOT using the django.views.static.serve() but this is not good for production use.
+# so if we are using the MEDIA_URL is defined as /media/ we can do this by using importing these things and then adding static into our urlpatterns
+
+
 
 urlpatterns = [
     path('home/',include('home.urls')),
@@ -25,3 +31,6 @@ urlpatterns = [
 
 
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,18 @@
+{% extends "placement/base.html" %}
+{% load static %}
+
+<!-- this is the profile file which is currently just showing the user name on the screen -->
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">  <!--this src field is providing the url to access the pic of user-->
+            <div class="media-body">
+                <h2 class="account-heading">{{user.username}}</h2>
+                <p class="text-secondary">{{user.email}}</p>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
+ 

@@ -1,7 +1,6 @@
 from django.shortcuts import render , redirect
 from .forms import UserRegisterForm , ExtenededuserForm# this is the form that we have created in the forms.py file using the usercreation form
 from django.contrib import messages # we are importing it to show the flash messages.
-from django.contrib.auth.decorators import login_required
 # different type of messages that this library have
 # message.debug
 # message.info
@@ -33,7 +32,3 @@ def register(request):
 def home(request):
     return render(request,'placement/home.html')
 
-# its returning the user profile 
-@login_required # this is the decorator it adds more functionality like to view this page user must be logged in
-def profile(request):
-    return render(request,'placement/profile.html')

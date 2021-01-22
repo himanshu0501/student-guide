@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'home',
     'clubs',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,9 @@ STATICFILES_DIRS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'  # its telling to use the bootstrap 
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/') # here we are using the os module to specify that the path should be created independent of the os and that path should be inside the BASE_DIR with folder name media
+MEDIA_URL = '/media/'  
 
 LOGIN_REDIRECT_URL='home'  # /account/profile this is the bydefault link that django search for as the user login so that django can try it to navigate him to the profile page 
 # so here LOGIN_REDIRECT_URL  is trying to divert that navigation to the home page of our blog hence set this URL to home 
