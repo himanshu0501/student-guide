@@ -35,6 +35,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from .models import Extendeduser
+from user_profile.models import Profile
 # Form fields don't have null or blank arguments. Those are for model fields only. For form fields, you just have required.
 
 # To know more about the fields that we get in django use this link https://www.geeksforgeeks.org/django-model-data-types-and-fields-list/
@@ -51,7 +52,20 @@ class UserRegisterForm(UserCreationForm): # Here we are inheriting from usercrea
               'password1':forms.TextInput(attrs={'placeholder':'Enter passowrd'}),
               'password2':forms.Textarea(attrs={'placeholder':'Enter password'}),
          }
-         
+
+class UserUpdateForm(forms.ModelForm): #this form is used to update the user details  
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username','email']
+
+
+class ProfileUpdateForm(forms.ModelForm): # this form is formed to work on the image update of user_profile model
+    class Meta:
+        model = Profile
+        fields = ['image']
+
 
 class ExtenededuserForm(forms.ModelForm): # here we are creating another form taking the fields from defined in models.py 
     class Meta:  

@@ -1,4 +1,5 @@
 {% extends "placement/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 <!-- this is the profile file which is currently just showing the user name on the screen -->
@@ -12,7 +13,17 @@
                 <p class="text-secondary">{{user.email}}</p>
             </div>
         </div>
-
+        <form method="POST" enctype="multipart/form-data">  <!--this enctype is used to maintain the changes in profile-->
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>                   
+                    {{u_form|crispy}} <!--- its an another form to update the detail of user i.e email,username and second p_form is used to update the profile pic of the user-->
+                    {{ p_form|crispy }} <!-- these parallel bars are used to filter we can use here crispy tag to filter our form and look good-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
     </div>
 {% endblock content %}
  

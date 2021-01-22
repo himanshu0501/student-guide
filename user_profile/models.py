@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -12,3 +13,18 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    def save(self): # here we are overriding the save method of this model
+        super().save() # first we have saved the data and now we will grab the
+        # image and then decrease its size because large image can make our program quite slow.
+
+        img = Image.open(self.image.path) # here we are opening the image first
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)  # if greater size then output_size (300,300)
+            img.thumbnail(output_size) # converting image according to size
+            img.save(self.image.path)   # saving that image
+
+
+
+
