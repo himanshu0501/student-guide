@@ -1,5 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils import timezone # imported to show the current time.
 # the inbuilt user model in django cannot be extended directly so here we are making another model and connecting this model with user
 # Create your models here.
 class Extendeduser(models.Model): # Here we are taking models
@@ -16,3 +18,19 @@ class Extendeduser(models.Model): # Here we are taking models
 
     def __str__(self):
         return self.user.username
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f'Post title - {self.title}'
+
+        # we will use reverse function it will return the url as a string
+
+    def get_absolute_url(self):
+        return reverse('blog',kwargs={'pk':self.pk})  # it will be used to pass the url to createView and that will redirect us to detailview page 

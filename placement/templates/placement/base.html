@@ -30,11 +30,12 @@
                     <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link" href="{% url 'home_detail' %}">Home</a>
-                        <a class="nav-item nav-link" href="{% url 'home' %}">About</a>
+                        <a class="nav-item nav-link" href="{% url 'home' %}">Blogs</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                       {% if user.is_authenticated %}    <!-- when user will be logged in then these url will be shown -->
+                      <a class="nav-item nav-link" href="{% url 'blog-create' %}">New Post</a>
                       <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                       <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a><!-- here we have linked the logout sign on the notice bar if the user is authentic-->
                       {% else %}
