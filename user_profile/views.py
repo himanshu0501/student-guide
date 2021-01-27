@@ -17,8 +17,6 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user) # instance= request.user will show the current user detail already filled in
         p_form = ProfileUpdateForm(instance=request.user.profile) #instance= request.user.profile will show the current user profile image filled
-    
-
     context = {
         'u_form':u_form,
         'p_form':p_form

@@ -1,9 +1,11 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from .forms import UserRegisterForm , ExtenededuserForm# this is the form that we have created in the forms.py file using the usercreation form
 from django.contrib import messages # we are importing it to show the flash messages.
 from .models import Post
+from django.contrib.auth.models import User
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView                                     # We will now show the blogs in listview
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+
 # different type of messages that this library have
 # message.debug
 # message.info
@@ -38,6 +40,9 @@ def home(request):
     context ={ 'posts':posts}
     return render(request,'placement/home.html',context)
 
+
+
+
 # by default class based view search for a template named as <app>/<model>_<viewtype>.html
 class PostListView(ListView):
     model = Post
@@ -45,10 +50,18 @@ class PostListView(ListView):
     context_object_name = 'posts' # here we are defining that for the context of this view we will use the posts
     ordering = ['-date_posted'] # here we are saying that the order of our posts sould be new -> older ..... if we will remove the minus sign 
     # in [-date_posted] then it will show the list with order older -> new 
+    paginate_by = 2 # when we will have many posts then we want to show only assume 2 posts per page so here we are dividing the posts and making the page
+
+
+
 
 
 class PostDetailView(DetailView):  # it will provide the detail of our post 
     model = Post # so it will be looking for a template with url <app>/<model>_<viewtype>.html
+
+
+
+
 
 
 # to create a post a user must be logged in and we can do that using the decoartor @login_required but here it is class based view so we can't use that 
@@ -61,6 +74,10 @@ class PostCreateView(LoginRequiredMixin,CreateView): # its a view where we will 
         form.instance.author = self.request.user # hey the form you are trying to submit before you that take the instance and set the author equal to current user logged in
         return super().form_valid(form)  
         # now if we will submit post will be created but django doesn't know about the redirect link
+
+
+
+
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Post
@@ -77,6 +94,10 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
         return False
 
 
+
+
+
+
 # it will used to delete the post 
 class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Post
@@ -87,3 +108,18 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         if self.request.user == post.author:  # this is checking if the user is same as the author of the post
             return True
         return False
+
+
+
+
+
+class UserPostListView(ListView):  #  here we are creating the page where all the personally uploaded post by any user will be displayed
+    model = Post
+    template_name = 'placement/user_posts.html'
+    context_object_name = 'posts' # here we are defining that for the context of this view we will use the posts
+    paginate_by = 2 # when we will have many posts then we want to show only assume 2 posts per page so here we are dividing the posts and making the page
+
+
+    def get_queryset(self):  # we will modify the List by overloading this function and only show the current user posts 
+        user = get_object_or_404(User,username=self.kwargs.get('username'))  # here we are capturing the username and store it in the user otherwise we will show 404 error.
+        return Post.objects.filter(author=user).order_by('-date_posted') # this will restrict the page to show the post only related to that user and order them by latest->old.

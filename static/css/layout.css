@@ -35,6 +35,7 @@ height: 45px;
     background-image: linear-gradient(to left,#474747,#0e0b0f);
 }
 
+/* this is class used for pagination number in placement  */
 .navbar-nav li{
   padding: 0 10px;
 }

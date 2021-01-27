@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'home',
     'clubs',
-    'user_profile',
+    'user_profile.apps.UserProfileConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +139,11 @@ LOGIN_REDIRECT_URL='home'  # /account/profile this is the bydefault link that dj
 
 LOGIN_URL = 'login'  # as the user try to access the profile page so there we have given a decorator which says that after only login you can see the profile page so django check the profile at
 # /account/login so to change that url instead of profile we have divert that url to login page first and as the user will then directly instead of going to the home page it will go to the profile page whose navigation we have given in our view in placement app.
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #this module is created to send the mail to gmail the user to reset the password 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'himanshu18060501@gmail.com'
+EMAIL_HOST_PASSWORD = 'himns0501@'      # here we are connecting the user to send the mail on this host user.
+# after that we will get one error called password reset complete  for that we  will add one more route 

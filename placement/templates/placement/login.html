@@ -14,6 +14,9 @@
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Log In</button> <!-- after login we will be redirected to account profile that is the by default path that django give us so in settings i have changed that path to be home page using the syntax as LOGIN REDIRECT URL-->
+                <small class="text-muted ml-2">
+                    <a href="{% url 'password_reset' %}">Forget Password?</a>
+                </small>
             </div>
         </form>
         <div class="border-top pt-3">
