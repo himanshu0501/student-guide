@@ -145,5 +145,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'himanshu18060501@gmail.com'
-EMAIL_HOST_PASSWORD = 'himns0501@'      # here we are connecting the user to send the mail on this host user.
+EMAIL_HOST_PASSWORD = '******'      # here we are connecting the user to send the mail on this host user.
 # after that we will get one error called password reset complete  for that we  will add one more route 
